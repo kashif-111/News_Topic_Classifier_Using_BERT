@@ -1,0 +1,49 @@
+# Ignore Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Large model files (uncomment if using Git LFS)
+# models/
+# *.bin
+# *.pt
+
+# Downloaded datasets (you can comment this out if you want to commit data)
+datasets/
+*.csv
+!README*.csv
+
+# Logs and temporary files
+logs/
+*.log
+temp/
+tmp/
+
+# Generated visualizations (optional to keep)
+# *.png
+
+# Environment variables
+.env
+.env.local
+
+# OS
+Thumbs.db
+.DS_Store

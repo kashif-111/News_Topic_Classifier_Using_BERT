@@ -1,51 +1,152 @@
-# News_Topic_Classifier_Using_BERT
-A news topic classification project using BERT for accurate text categorization. Leverages pretrained transformer models to understand contextual meaning in news articles. Supports multiple categories such as politics,sports, business, technology. Includes data preprocessing, model fine-tuning,. Built with Python, Pytorch, and Hugging Face scalable NLP workflows.
-📰 News Topic Classifier using BERT
-📌 Overview
+# News Topic Classifier Using BERT
 
-This project implements a news topic classification system using BERT (Bidirectional Encoder Representations from Transformers). The model is fine-tuned on a labeled news dataset to accurately classify articles into predefined categories such as politics, sports, business, and technology.
+## Objective
+Fine-tune a pre-trained BERT (Bidirectional Encoder Representations from Transformers) model to classify news headlines into topic categories using the AG News Dataset.
 
-🚀 Features
-Uses pretrained BERT for deep contextual understanding
-Fine-tuned on custom/news datasets
-Supports multi-class classification
-End-to-end pipeline (preprocessing → training → evaluation)
-High accuracy with minimal feature engineering
-🛠️ Tech Stack
-Python
-PyTorch
-Hugging Face Transformers
-Scikit-learn
-Pandas & NumPy
-📂 Project Structure
-├── data/               # Dataset files
-├── notebooks/          # Jupyter notebooks (EDA, experiments)
-├── src/                # Source code
-│   ├── preprocessing.py
-│   ├── train.py
-│   ├── evaluate.py
-├── models/             # Saved models
-├── requirements.txt
-└── README.md
-⚙️ Installation
-git clone https://github.com/your-username/news-topic-classifier-bert.git
-cd news-topic-classifier-bert
+## Methodology / Approach
+
+### 1. **Dataset Loading & Preprocessing**
+   - Load AG News dataset from Hugging Face Datasets
+   - Explore data distribution across 4 classes (World, Sports, Business, Science/Tech)
+   - Implement tokenization using BERT tokenizer
+
+### 2. **Model Development & Training**
+   - Use `bert-base-uncased` pre-trained model as base
+   - Add classification head with dropout for regularization
+   - Implement training loop with learning rate scheduling
+   - Use AdamW optimizer with weight decay
+   - Training configuration: 3 epochs, batch size 32, max sequence length 128
+
+### 3. **Evaluation & Metrics**
+   - **Accuracy**: Overall correctness of predictions
+   - **F1-Score**: Macro average F1-score across all classes
+   - Per-class precision, recall, and F1-score
+   - Classification report and confusion matrix
+
+### 4. **Deployment**
+   - **Streamlit App** (`app_streamlit.py`): Interactive web interface
+   - **Gradio App** (`app_gradio.py`): Alternative lightweight interface
+   - Real-time prediction on user input headlines
+
+## Key Results & Observations
+
+The trained model will achieve:
+- High accuracy on news classification (typically 90%+)
+- Balanced F1-scores across all topic categories
+- Fast inference time suitable for production deployment
+
+## Project Structure
+
+```
+News_Classifier_using_BERT/
+├── News_Classifier_BERT.ipynb          # Main Jupyter Notebook
+├── app_streamlit.py                     # Streamlit deployment
+├── app_gradio.py                        # Gradio deployment
+├── models/                              # Saved model artifacts
+│   └── bert_news_classifier/
+├── data/                                # Dataset directory
+├── requirements.txt                     # Python dependencies
+└── README.md                            # This file
+```
+
+## Installation & Setup
+
+### 1. Clone/Create Project
+```bash
+cd c:\News_Classifier_using_BERT
+```
+
+### 2. Install Dependencies
+```bash
 pip install -r requirements.txt
-▶️ Usage
-python src/train.py
-python src/evaluate.py
-📊 Model Details
-Model: bert-base-uncased
-Task: Multi-class text classification
-Metrics: Accuracy, Precision, Recall, F1-score
-📈 Results
+```
 
-The model achieves strong performance due to BERT’s ability to capture contextual relationships in text.
+### 3. Run Jupyter Notebook
+```bash
+jupyter notebook News_Classifier_BERT.ipynb
+```
 
-🤝 Contributing
+### 4. Deploy with Streamlit
+```bash
+streamlit run app_streamlit.py
+```
 
-Contributions are welcome! Feel free to fork the repo and submit a pull request.
+### 5. Deploy with Gradio
+```bash
+python app_gradio.py
+```
 
-📜 License
+## Dataset Information
 
-This project is licensed under the MIT License.
+**AG News Dataset:**
+- **Size**: ~120,000 training + 7,600 test samples
+- **Classes** (4 categories):
+  - 1: World
+  - 2: Sports
+  - 3: Business
+  - 4: Science/Technology
+- **Features**: Text (headline) and Label
+
+## Model Information
+
+- **Base Model**: `bert-base-uncased`
+- **Parameters**: ~109M
+- **Max Sequence Length**: 128 tokens
+- **Training Framework**: PyTorch with Hugging Face Transformers
+- **GPU Memory**: ~4GB (GPU recommended)
+
+## How to Use
+
+### In Jupyter Notebook
+- Run all cells sequentially
+- Train the model
+- Evaluate on test set
+- Make predictions on custom sentences
+
+### Streamlit App
+```bash
+streamlit run app_streamlit.py
+```
+- Enter any news headline
+- Click "Classify" to see prediction and confidence scores
+
+### Gradio App
+```bash
+python app_gradio.py
+```
+- Open browser to localhost URL
+- Type headline and submit
+
+## Technologies Used
+
+- **Transformers**: Hugging Face Transformers library
+- **Deep Learning**: PyTorch
+- **NLP**: BERT, Tokenization
+- **ML Pipeline**: scikit-learn
+- **Visualization**: Matplotlib, Seaborn
+- **Web Deployment**: Streamlit, Gradio
+- **Data Handling**: Datasets, Pandas
+
+## Performance Tips
+
+1. **GPU Acceleration**: Use CUDA-compatible GPU for faster training
+2. **Batch Optimization**: Adjust batch size based on available GPU memory
+3. **Mixed Precision**: Enable mixed precision training for faster computation
+4. **Gradient Accumulation**: Use to simulate larger batch sizes
+
+## Future Improvements
+
+- [ ] Implement cross-validation
+- [ ] Hyperparameter tuning (learning rate, batch size, epochs)
+- [ ] Test other BERT variants (DistilBERT, RoBERTa)
+- [ ] Add confidence calibration
+- [ ] Implement model explainability (LIME, SHAP)
+- [ ] Create REST API with FastAPI
+
+## Author
+Kashif Ur Rahman
+BS AI Student - AWKUM
+DevelopersHub Corporation Internship
+
+## License
+MIT License
